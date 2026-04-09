@@ -1,0 +1,40 @@
+2026-04-08 23:58:14.943 +05:30 [INF] User profile is available. Using 'C:\Users\Admin\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2026-04-08 23:58:15.067 +05:30 [INF] Creating key {ffe88276-ae97-49e6-8253-265de3ea8cdc} with creation date 2026-04-08 18:28:15Z, activation date 2026-04-08 18:28:15Z, and expiration date 2026-07-07 18:28:15Z.
+2026-04-08 23:58:15.115 +05:30 [INF] Writing data to file 'C:\Users\Admin\AppData\Local\ASP.NET\DataProtection-Keys\key-ffe88276-ae97-49e6-8253-265de3ea8cdc.xml'.
+2026-04-08 23:58:15.734 +05:30 [INF] Now listening on: https://localhost:7050
+2026-04-08 23:58:15.741 +05:30 [INF] Now listening on: http://localhost:5188
+2026-04-08 23:58:15.894 +05:30 [INF] Application started. Press Ctrl+C to shut down.
+2026-04-08 23:58:15.918 +05:30 [INF] Hosting environment: Development
+2026-04-08 23:58:15.920 +05:30 [INF] Content root path: E:\Zest_india_assessment\StudentManagementSystem
+2026-04-08 23:58:30.216 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7050/swagger/index.html - null null
+2026-04-08 23:58:30.725 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7050/swagger/index.html - 200 null text/html;charset=utf-8 515.5072ms
+2026-04-08 23:58:30.746 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7050/swagger/swagger-ui.css - null null
+2026-04-08 23:58:30.748 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7050/swagger/index.css - null null
+2026-04-08 23:58:30.748 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7050/swagger/swagger-ui-bundle.js - null null
+2026-04-08 23:58:30.748 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7050/swagger/swagger-ui-standalone-preset.js - null null
+2026-04-08 23:58:30.788 +05:30 [INF] Sending file. Request path: '/index.css'. Physical path: 'N/A'
+2026-04-08 23:58:30.791 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7050/swagger/index.css - 200 202 text/css 42.7787ms
+2026-04-08 23:58:30.800 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7050/swagger/index.js - null null
+2026-04-08 23:58:30.801 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7050/_framework/aspnetcore-browser-refresh.js - null null
+2026-04-08 23:58:30.801 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7050/_vs/browserLink - null null
+2026-04-08 23:58:30.814 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7050/swagger/index.js - 200 null application/javascript;charset=utf-8 14.2174ms
+2026-04-08 23:58:30.846 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7050/_framework/aspnetcore-browser-refresh.js - 200 14951 application/javascript; charset=utf-8 45.6718ms
+2026-04-08 23:58:30.866 +05:30 [INF] Sending file. Request path: '/swagger-ui.css'. Physical path: 'N/A'
+2026-04-08 23:58:30.876 +05:30 [INF] Sending file. Request path: '/swagger-ui-standalone-preset.js'. Physical path: 'N/A'
+2026-04-08 23:58:30.880 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7050/swagger/swagger-ui-standalone-preset.js - 200 230007 text/javascript 131.5665ms
+2026-04-08 23:58:30.930 +05:30 [INF] Sending file. Request path: '/swagger-ui-bundle.js'. Physical path: 'N/A'
+2026-04-08 23:58:30.880 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7050/swagger/swagger-ui.css - 200 152035 text/css 134.6164ms
+2026-04-08 23:58:31.050 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7050/swagger/swagger-ui-bundle.js - 200 1426050 text/javascript 301.9338ms
+2026-04-08 23:58:31.195 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7050/_vs/browserLink - 200 null text/javascript; charset=UTF-8 394.2137ms
+2026-04-08 23:58:31.697 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7050/swagger/v1/swagger.json - null null
+2026-04-08 23:58:31.729 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7050/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 32.6624ms
+2026-04-08 23:58:31.848 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7050/swagger/favicon-32x32.png - null null
+2026-04-08 23:58:31.856 +05:30 [INF] Sending file. Request path: '/favicon-32x32.png'. Physical path: 'N/A'
+2026-04-08 23:58:31.863 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7050/swagger/favicon-32x32.png - 200 628 image/png 14.7079ms
+2026-04-08 23:59:39.094 +05:30 [INF] Request starting HTTP/2 POST https://localhost:7050/api/Auth/login - application/json 55
+2026-04-08 23:59:41.839 +05:30 [INF] Executing endpoint 'StudentManagementSystem.Controllers.AuthController.Login (StudentManagementSystem)'
+2026-04-08 23:59:41.905 +05:30 [INF] Route matched with {action = "Login", controller = "Auth"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Login(StudentManagementSystem.Models.LoginModel) on controller StudentManagementSystem.Controllers.AuthController (StudentManagementSystem).
+2026-04-08 23:59:42.010 +05:30 [INF] Executing ObjectResult, writing value of type 'Microsoft.AspNetCore.Mvc.ProblemDetails'.
+2026-04-08 23:59:42.051 +05:30 [INF] Executed action StudentManagementSystem.Controllers.AuthController.Login (StudentManagementSystem) in 132.5243ms
+2026-04-08 23:59:42.055 +05:30 [INF] Executed endpoint 'StudentManagementSystem.Controllers.AuthController.Login (StudentManagementSystem)'
+2026-04-08 23:59:42.059 +05:30 [INF] Request finished HTTP/2 POST https://localhost:7050/api/Auth/login - 401 null application/problem+json; charset=utf-8 2965.0552ms
