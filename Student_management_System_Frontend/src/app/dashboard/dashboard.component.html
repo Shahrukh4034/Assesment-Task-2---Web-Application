@@ -1,0 +1,246 @@
+<div class="dashboard-layout">
+  <aside class="sidebar">
+    <div class="brand">
+      <div class="logo">S</div>
+      <span>EduManager</span>
+    </div>
+
+    <nav class="nav-menu">
+      <a (click)="changeTab('dashboard')" class="nav-item" [class.active]="currentTab === 'dashboard'">
+        <i class="bi bi-grid-1x2-fill icon"></i> Dashboard
+      </a>
+      <a (click)="changeTab('students')" class="nav-item" [class.active]="currentTab === 'students'">
+        <i class="bi bi-people-fill icon"></i> Students
+      </a>
+      <a (click)="changeTab('courses')" class="nav-item" [class.active]="currentTab === 'courses'">
+        <i class="bi bi-book-fill icon"></i> Courses
+      </a>
+      <a (click)="changeTab('settings')" class="nav-item" [class.active]="currentTab === 'settings'">
+        <i class="bi bi-gear-fill icon"></i> Settings
+      </a>
+    </nav>
+
+    <div class="sidebar-footer">
+  <button class="btn-logout" (click)="onLogout()">
+    <div class="logout-content">
+      <i class="bi bi-box-arrow-left"></i>
+      <span>Sign Out</span>
+    </div>
+    <i class="bi bi-chevron-right arrow-icon"></i>
+  </button>
+</div>
+  </aside>
+
+  <main class="main-content">
+    <header class="top-bar">
+      <div class="search-wrapper">
+        <i class="bi bi-search search-icon"></i>
+        <input type="text" placeholder="Quick search..." (input)="onSearch($event)">
+      </div>
+      
+      <div class="header-actions">
+        <div class="notification-badge">
+          <i class="bi bi-bell"></i>
+        </div>
+        <div class="user-profile">
+          <img src="https://ui-avatars.com/api/?name={{userName}}&background=4f46e5&color=fff" alt="User">
+          <div class="user-info">
+            <span class="user-name">{{ userName }}</span>
+            <span class="user-role">Administrator</span>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <div class="content-container">
+      <div *ngIf="currentTab === 'dashboard' || currentTab === 'students'">
+        <div class="header-section">
+          <div>
+            <h1>Student Directory</h1>
+            <p class="subtitle">Overview of all enrolled students</p>
+          </div>
+          <button class="btn-create" (click)="openCreateModal()">
+            <i class="bi bi-plus-lg"></i> Add New Student
+          </button>
+        </div>
+
+        <div class="table-card">
+          <table>
+            <thead>
+              <tr>
+                <th>Student Name</th>
+                <th>Age</th>
+                <th>Email</th>
+                <th>Course</th>
+                <th>Date</th>
+                <th class="text-center">Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let s of (paginatedStudents$ | async)">
+                <td class="name-cell">
+                  <div class="avatar-circle">{{ s.name.charAt(0) }}</div>
+                  {{ s.name }}
+                </td>
+                <td>{{ s.age }}</td>
+                <td>{{ s.email }}</td>
+                <td><span class="badge">{{ s.course }}</span></td>
+                <td>{{ s.createdDate | date:'dd-MM-yyyy' }}</td>
+                <td class="actions">
+                  <button class="icon-btn view" (click)="viewStudent(s)" title="View Details">
+                    <i class="bi bi-eye"></i>
+                  </button>
+                  <button class="icon-btn edit" (click)="editStudent(s)" title="Edit Student">
+                    <i class="bi bi-pencil"></i>
+                  </button>
+                  <button class="icon-btn delete" (click)="removeStudent(s.id)" title="Delete Student">
+                    <i class="bi bi-trash3"></i>
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+          <div class="pagination">
+            <span>Showing <b>{{ (paginatedStudents$ | async)?.length || 0 }}</b> students</span>
+            <div class="page-buttons">
+              <button [disabled]="currentPage === 1" (click)="changePage(-1)" class="btn-page">
+                <i class="bi bi-chevron-left"></i> Previous
+              </button>
+              <span class="page-info">Page {{currentPage}}</span>
+              <button (click)="changePage(1)" class="btn-page">
+                Next <i class="bi bi-chevron-right"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div *ngIf="currentTab === 'courses'">
+        <h1>Available Courses</h1>
+        <div class="table-card" style="padding: 20px;">
+          <p>Explore current curriculum offerings. ( 'MCA', 'B.Tech', 'BCA', 'M.Tech', 'BCS' )</p>
+        </div>
+      </div>
+      <div *ngIf="currentTab === 'settings'">
+  <div class="header-section">
+    <div>
+      <h1>Account Settings</h1>
+      <p class="subtitle">Manage your profile, security, and app preferences</p>
+    </div>
+  </div>
+
+  <div class="settings-grid">
+    <div class="table-card settings-card">
+      <div class="card-header">
+        <i class="bi bi-person-bounding-box"></i>
+        <h3>My Profile</h3>
+      </div>
+      <div class="card-body">
+        <div class="profile-upload">
+          <img src="https://ui-avatars.com/api/?name={{userName}}&background=4f46e5&color=fff" alt="User">
+          <button class="btn-outline-sm">Change Photo</button>
+        </div>
+        <div class="form-group">
+          <label>Administrator Name</label>
+          <input type="text" [(ngModel)]="userName" placeholder="Enter display name">
+        </div>
+        <button class="btn-primary" (click)="updateProfile()">Update Display Name</button>
+      </div>
+    </div>
+
+    <div class="table-card settings-card">
+      <div class="card-header">
+        <i class="bi bi-shield-lock-fill"></i>
+        <h3>Security</h3>
+      </div>
+      <div class="card-body">
+        <div class="form-group">
+          <label>Current Password</label>
+          <input type="password" placeholder="••••••••">
+        </div>
+        <div class="form-group">
+          <label>New Password</label>
+          <input type="password" placeholder="Min. 8 characters">
+        </div>
+        <button class="btn-primary">Update Password</button>
+      </div>
+    </div>
+
+    <div class="table-card settings-card full-width">
+      <div class="card-header">
+        <i class="bi bi-sliders"></i>
+        <h3>System Preferences</h3>
+      </div>
+      <div class="card-body prefs-flex">
+        <div class="pref-item">
+          <div class="pref-info">
+            <strong>Email Notifications</strong>
+            <span>Receive alerts about new student registrations</span>
+          </div>
+          <label class="switch">
+            <input type="checkbox" checked>
+            <span class="slider round"></span>
+          </label>
+        </div>
+        <div class="pref-item">
+          <div class="pref-info">
+            <strong>Maintenance Mode</strong>
+            <span>Restrict access during system updates</span>
+          </div>
+          <label class="switch">
+            <input type="checkbox">
+            <span class="slider round"></span>
+          </label>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    </div>
+  </main>
+
+  <div class="modal-overlay" [class.active]="isModalOpen">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2>{{ isEditMode ? 'Edit Student' : 'Add New Student' }}</h2>
+        <button class="close-btn" (click)="closeModal()">
+          <i class="bi bi-x-lg"></i>
+        </button>
+      </div>
+
+      <form [formGroup]="studentForm" (ngSubmit)="saveStudent()">
+        <div class="form-group">
+          <label>Full Name</label>
+          <input type="text" formControlName="name" placeholder="Enter name">
+        </div>
+        <div class="form-group">
+          <label>Email Address</label>
+          <input type="email" formControlName="email" placeholder="Enter email">
+        </div>
+        <div class="form-group">
+          <label>Course</label>
+          <select formControlName="course">
+            <option value="" disabled>Select Course</option>
+            <option *ngFor="let c of courses" [value]="c">{{ c }}</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Age</label>
+          <input type="number" formControlName="age" placeholder="Enter age">
+        </div>
+        <div class="form-group">
+          <label>Enrollment Date</label>
+          <input type="date" formControlName="createdDate">
+        </div>
+
+        <div class="modal-actions">
+          <button type="button" class="btn-cancel" (click)="closeModal()">Cancel</button>
+          <button type="submit" class="btn-primary" [disabled]="studentForm.invalid">
+            {{ isEditMode ? 'Update' : 'Save' }}
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
